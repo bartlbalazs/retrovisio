@@ -1,3 +1,6 @@
-<p>
-  meetings works!
-</p>
+<mat-list>
+  <h2 class="mat-h2">Past meetings</h2>
+  <app-meeting *ngFor="let meeting of meetings | async" [meeting]="meeting"></app-meeting>
+</mat-list>
+
+
