@@ -1,18 +1,18 @@
-import { Injectable } from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection} from "angularfire2/firestore";
+import {Inject, Injectable} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {Meeting} from "../shared/Meeting";
+import {StorageClient} from "../communication/StorageClient";
 
 @Injectable()
 export class MeetingsService {
 
-  meetingsCollection: AngularFirestoreCollection<Meeting>;
 
-  constructor(private afs: AngularFirestore) {
-    this.meetingsCollection = this.afs.collection('meetings');
+  constructor(@Inject('StorageClient') private storage: StorageClient) {}
+
+  getMeeting(id: string): Observable<Meeting> {
+    return this.storage.meetings().find(id);
   }
-
   getMeetings(): Observable<Meeting[]> {
-    return this.meetingsCollection.valueChanges();
+    return this.storage.meetings().findAll();
   }
 }

@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Meeting} from "../shared/Meeting";
+import {Component, Input, OnInit, Output} from '@angular/core';
+import {Meeting} from "../../shared/Meeting";
 
 @Component({
   selector: 'app-meeting',
