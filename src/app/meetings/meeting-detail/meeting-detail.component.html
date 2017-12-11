@@ -1,1 +1,5 @@
 <h3>Retrospective on {{(meeting |async)?.startedAt |date:'longDate' }}</h3>
+<mat-list>
+  <app-retro-item *ngFor="let item of retroItems | async" [retroItem]="item">
+  </app-retro-item>
+</mat-list>

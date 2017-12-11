@@ -9,9 +9,10 @@ import {Meeting} from "../../shared/Meeting";
 export class MeetingComponent implements OnInit {
 
   @Input()
-  meeting : Meeting;
+  meeting: Meeting;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

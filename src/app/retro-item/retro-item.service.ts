@@ -1,8 +1,19 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
+import {StorageClient} from "../communication/StorageClient";
+import {Observable} from "rxjs/Observable";
+import {RetroItem} from "../shared/RetroItem";
 
 @Injectable()
 export class RetroItemService {
 
-  constructor() { }
+  constructor(@Inject('StorageClient') private storage: StorageClient) {
+  }
 
+  getRetroItems(id: string): Observable<RetroItem[]> {
+    return this.storage.retroItems().find(id).map(data => data.sort(
+      (a, b) => {
+        return a.order < b.order ? -1 : 1;
+      }
+    ))
+  }
 }

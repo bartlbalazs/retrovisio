@@ -6,7 +6,6 @@ import {StorageClient} from "../communication/StorageClient";
 @Injectable()
 export class MeetingsService {
 
-
   constructor(@Inject('StorageClient') private storage: StorageClient) {}
 
   getMeeting(id: string): Observable<Meeting> {

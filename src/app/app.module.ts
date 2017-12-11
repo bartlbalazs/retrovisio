@@ -6,6 +6,8 @@ import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
 
 import {AppComponent} from './app.component';
 import {MeetingsComponent} from './meetings/meetings.component';
@@ -15,6 +17,8 @@ import {MeetingsService} from "./meetings/meetings.service";
 import {FirebaseStorageClient} from "./communication/FirabaseStorageClient";
 import {RoutingModule} from "./routing/routing.module";
 import { MeetingDetailComponent } from './meetings/meeting-detail/meeting-detail.component';
+import {RetroItemService} from "./retro-item/retro-item.service";
+import { RetroItemSorter } from './shared/retro-item-sorter';
 
 @NgModule({
   declarations: [
@@ -22,13 +26,16 @@ import { MeetingDetailComponent } from './meetings/meeting-detail/meeting-detail
     MeetingsComponent,
     MeetingComponent,
     RetroItemComponent,
-    MeetingDetailComponent
+    MeetingDetailComponent,
+    RetroItemSorter
   ],
   imports: [
     BrowserModule,
     MatToolbarModule,
     MatListModule,
     MatIconModule,
+    MatCardModule,
+    MatInputModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebase),
     RoutingModule
@@ -36,7 +43,9 @@ import { MeetingDetailComponent } from './meetings/meeting-detail/meeting-detail
   providers: [
     {provide: 'StorageClient', useClass: FirebaseStorageClient},
     FirebaseStorageClient,
-    MeetingsService],
+    MeetingsService,
+    RetroItemService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

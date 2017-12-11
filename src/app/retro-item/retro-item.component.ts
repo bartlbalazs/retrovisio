@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {RetroItem} from "../shared/RetroItem";
 
 @Component({
   selector: 'app-retro-item',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RetroItemComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  retroItem: RetroItem;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
