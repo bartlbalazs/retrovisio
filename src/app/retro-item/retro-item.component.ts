@@ -9,6 +9,9 @@ import {RetroItem} from "../shared/RetroItem";
 export class RetroItemComponent implements OnInit {
 
   @Input()
+  order: number;
+
+  @Input()
   retroItem: RetroItem;
 
   constructor() {
