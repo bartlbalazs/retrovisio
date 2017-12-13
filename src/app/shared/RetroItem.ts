@@ -1,13 +1,10 @@
 export class RetroItem {
 
-  id: string;
-  content: string = '';
-  order: number = 1;
+  content: string = ' ';
+  timestamp: number = Date.now();
   votes: number = 0;
 
-
-  constructor(content: string, order: number) {
+  constructor(content: string) {
     this.content = content;
-    this.order = order;
   }
 }

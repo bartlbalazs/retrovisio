@@ -2,7 +2,6 @@ import {MeetingStorage, RetroItemStorage, StorageClient} from "./StorageClient";
 import {AngularFirestore, AngularFirestoreCollection} from "angularfire2/firestore";
 import {Meeting} from "../shared/Meeting";
 import {Injectable} from "@angular/core";
-import {RetroItemList} from "../shared/RetroItemList";
 import {RetroItem} from "../shared/RetroItem";
 import {Subject} from "rxjs/Subject";
 
@@ -37,16 +36,13 @@ export class FirebaseStorageClient implements StorageClient {
   retroItems(): RetroItemStorage {
     return {
 
-      find: (id: string) => {
-        let itemsSubject = new Subject<RetroItem[]>();
-        this.afs.doc<RetroItemList>('retroItemLists/' + id).valueChanges().subscribe(itemList => {
-          if (itemList && itemList.items) {
-            let items = [];
-            itemList.items.forEach(i => items.push(i));
-            itemsSubject.next(items);
-          }
-        });
-        return itemsSubject;
+      findItemsForMeeting: (id: string) => {
+        return this.afs.collection<RetroItem>('meetingminutes/' + id + '/retroitems').valueChanges();
+      },
+
+      create: (meetingId: string, retroItem: RetroItem) => {
+        const itemDoc = this.afs.doc<RetroItem>('meetingminutes/' + meetingId + '/retroitems/' + retroItem.timestamp);
+        itemDoc.set(Object.assign({}, retroItem));
       }
     }
   }

@@ -10,10 +10,14 @@ export class RetroItemService {
   }
 
   getRetroItems(id: string): Observable<RetroItem[]> {
-    return this.storage.retroItems().find(id).map(data => data.sort(
+    return this.storage.retroItems().findItemsForMeeting(id).map(data => data.sort(
       (a, b) => {
-        return a.order < b.order ? -1 : 1;
+        return a.timestamp < b.timestamp ? -1 : 1;
       }
     ))
+  }
+
+  addItemToMeeting(meetingId: string, content: string) {
+    this.storage.retroItems().create(meetingId,new RetroItem(content))
   }
 }
