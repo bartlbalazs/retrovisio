@@ -43,6 +43,11 @@ export class FirebaseStorageClient implements StorageClient {
       create: (meetingId: string, retroItem: RetroItem) => {
         const itemDoc = this.afs.doc<RetroItem>('meetingminutes/' + meetingId + '/retroitems/' + retroItem.timestamp);
         itemDoc.set(Object.assign({}, retroItem));
+      },
+
+      updateVote: (meetingId, retroItem) => {
+        const itemDoc = this.afs.doc<RetroItem>('meetingminutes/' + meetingId + '/retroitems/' + retroItem.timestamp);
+        itemDoc.update({"votes" : retroItem.votes})
       }
     }
   }

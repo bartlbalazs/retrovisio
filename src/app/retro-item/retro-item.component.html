@@ -2,11 +2,11 @@
   <mat-card-content fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
     <span class="order">{{order}}</span>
     <span class="mat-body-2" fxFlex>{{retroItem.content}}</span>
-    <button mat-mini-fab>
+    <button mat-mini-fab (click)="onDownVote()">
       <mat-icon mat-list-icon>thumb_down</mat-icon>
     </button>
     <span class="vote">{{retroItem.votes}}</span>
-    <button mat-mini-fab>
+    <button mat-mini-fab (click)="onUpVote()">
       <mat-icon mat-list-icon>thumb_up</mat-icon>
     </button>
   </mat-card-content>

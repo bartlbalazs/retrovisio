@@ -19,7 +19,19 @@ export class RetroItemService {
 
   addItemToMeeting(meetingId: string, content: string) {
     if (content != null && content.length > 0) {
-      this.storage.retroItems().create(meetingId,new RetroItem(content))
+      this.storage.retroItems().create(meetingId, new RetroItem(content))
+    }
+  }
+
+  upVote(meetingId: string, retroItem: RetroItem) {
+    retroItem.votes++;
+    this.storage.retroItems().updateVote(meetingId, retroItem);
+  }
+
+  downVote(meetingId: string, retroItem: RetroItem) {
+    if (retroItem.votes > 0) {
+      retroItem.votes--;
+      this.storage.retroItems().updateVote(meetingId, retroItem);
     }
   }
 }
