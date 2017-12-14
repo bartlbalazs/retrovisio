@@ -18,6 +18,8 @@ export class RetroItemService {
   }
 
   addItemToMeeting(meetingId: string, content: string) {
-    this.storage.retroItems().create(meetingId,new RetroItem(content))
+    if (content != null && content.length > 0) {
+      this.storage.retroItems().create(meetingId,new RetroItem(content))
+    }
   }
 }

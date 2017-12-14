@@ -23,5 +23,6 @@ export class NewRetroItemComponent implements OnInit {
     let meetingId = this.route.snapshot.params['id'];
     let content = this.itemForm.value.content;
     this.retroItemService.addItemToMeeting(meetingId, content);
+    this.itemForm.resetForm();
   }
 }
