@@ -12,6 +12,10 @@ export class MeetingsService {
     return this.storage.meetings().find(id);
   }
   getMeetings(): Observable<Meeting[]> {
-    return this.storage.meetings().findAll();
+    return this.storage.meetings().findAll().map(data => data.sort(
+      (a, b) => {
+        return a.startedAt < b.startedAt ? -1 : 1;
+      }
+    ));
   }
 }

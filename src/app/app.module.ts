@@ -24,7 +24,6 @@ import {FirebaseStorageClient} from "./communication/FirebaseStorageClient";
 import {RoutingModule} from "./routing/routing.module";
 import {MeetingDetailComponent} from './meetings/meeting-detail/meeting-detail.component';
 import {RetroItemService} from "./retro-item/retro-item.service";
-import {RetroItemSorter} from './shared/retro-item-sorter';
 
 @NgModule({
   declarations: [
@@ -34,7 +33,6 @@ import {RetroItemSorter} from './shared/retro-item-sorter';
     RetroItemComponent,
     MeetingDetailComponent,
     NewRetroItemComponent,
-    RetroItemSorter,
     DeleteConfirmationDialog
   ],
   entryComponents: [
