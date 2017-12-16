@@ -12,9 +12,13 @@ export interface MeetingStorage {
 export interface RetroItemStorage {
   create(meetingId: string, retroItem: RetroItem);
 
+  deleteItem(meetingId: string, retroItemId: string);
+
   findItemsForMeeting(id: string): Observable<RetroItem[]>;
 
   updateVote(meetingId: string, retroItem: RetroItem);
+
+  updateContent(meetingId: string, retroItem: RetroItem);
 }
 
 export interface StorageClient {

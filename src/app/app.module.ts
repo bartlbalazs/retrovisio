@@ -12,14 +12,15 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import {AppComponent} from './app.component';
 import {MeetingsComponent} from './meetings/meetings.component';
 import {MeetingComponent} from './meetings/meeting/meeting.component';
-import {RetroItemComponent} from './retro-item/retro-item.component';
+import {DeleteConfirmationDialog, RetroItemComponent} from './retro-item/retro-item.component';
 import {NewRetroItemComponent} from "./retro-item/new-retro-item/new-retro-item.component";
 import {MeetingsService} from "./meetings/meetings.service";
-import {FirebaseStorageClient} from "./communication/FirabaseStorageClient";
+import {FirebaseStorageClient} from "./communication/FirebaseStorageClient";
 import {RoutingModule} from "./routing/routing.module";
 import {MeetingDetailComponent} from './meetings/meeting-detail/meeting-detail.component';
 import {RetroItemService} from "./retro-item/retro-item.service";
@@ -33,7 +34,11 @@ import {RetroItemSorter} from './shared/retro-item-sorter';
     RetroItemComponent,
     MeetingDetailComponent,
     NewRetroItemComponent,
-    RetroItemSorter
+    RetroItemSorter,
+    DeleteConfirmationDialog
+  ],
+  entryComponents: [
+    DeleteConfirmationDialog
   ],
   imports: [
     BrowserModule,
@@ -46,6 +51,7 @@ import {RetroItemSorter} from './shared/retro-item-sorter';
     MatInputModule,
     MatButtonModule,
     AngularFirestoreModule,
+    MatDialogModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     RoutingModule
@@ -54,7 +60,7 @@ import {RetroItemSorter} from './shared/retro-item-sorter';
     {provide: 'StorageClient', useClass: FirebaseStorageClient},
     FirebaseStorageClient,
     MeetingsService,
-    RetroItemService
+    RetroItemService,
   ],
   bootstrap: [AppComponent]
 })

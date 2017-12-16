@@ -23,6 +23,10 @@ export class RetroItemService {
     }
   }
 
+  deleteRetroItem(meetingId: string, retroItemId: string) {
+    this.storage.retroItems().deleteItem(meetingId, retroItemId);
+  }
+
   upVote(meetingId: string, retroItem: RetroItem) {
     retroItem.votes++;
     this.storage.retroItems().updateVote(meetingId, retroItem);
@@ -33,5 +37,9 @@ export class RetroItemService {
       retroItem.votes--;
       this.storage.retroItems().updateVote(meetingId, retroItem);
     }
+  }
+
+  editContent(meetingId: string, retroItem: RetroItem) {
+    this.storage.retroItems().updateContent(meetingId, retroItem);
   }
 }

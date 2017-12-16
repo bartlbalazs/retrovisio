@@ -1,13 +1,26 @@
-<mat-card>
+<mat-card [ngClass]="{'edited-retro-item': isInEditingMode}">
   <mat-card-content fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
     <span class="order">{{order}}</span>
-    <span class="mat-body-2" fxFlex>{{retroItem.content}}</span>
-    <button mat-mini-fab (click)="onDownVote()">
-      <mat-icon mat-list-icon>thumb_down</mat-icon>
-    </button>
-    <span class="vote">{{retroItem.votes}}</span>
-    <button mat-mini-fab (click)="onUpVote()">
-      <mat-icon mat-list-icon>thumb_up</mat-icon>
-    </button>
+    <div *ngIf="!isInEditingMode" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+      <span class="mat-body-2" fxFlex  (click)="onStartEditing()">{{retroItem.content}}</span>
+      <button mat-mini-fab (click)="onDownVote()">
+        <mat-icon mat-list-icon>thumb_down</mat-icon>
+      </button>
+      <span class="vote">{{retroItem.votes}}</span>
+      <button mat-mini-fab (click)="onUpVote()">
+        <mat-icon mat-list-icon>thumb_up</mat-icon>
+      </button>
+    </div>
+    <div *ngIf="isInEditingMode" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+      <form fxFlex (ngSubmit)="onEditItem()" #f="ngForm" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <input fxFlex class="mat-body-2" type="text" [value]="retroItem.content" matInput name="content" [ngModel]="retroItem.content">
+        <button mat-mini-fab type="submit">
+          <mat-icon mat-list-icon>done</mat-icon>
+        </button>
+        <button mat-mini-fab (click)="onDeleteItem()">
+          <mat-icon mat-list-icon>delete_forever</mat-icon>
+        </button>
+      </form>
+    </div>
   </mat-card-content>
 </mat-card>
