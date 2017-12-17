@@ -15,6 +15,7 @@ export class MeetingDetailComponent implements OnInit {
 
   meeting: Observable<Meeting>;
   retroItems: Observable<RetroItem[]>;
+  orderedItems: RetroItem[] = [];
 
   constructor(private meetingService: MeetingsService, private retroItemService: RetroItemService, private route: ActivatedRoute) {
   }
@@ -26,6 +27,18 @@ export class MeetingDetailComponent implements OnInit {
           this.loadMeetingData(value['id'])
         }
       );
+  }
+
+  onStartEvaluate() {
+    const id = this.route.snapshot.params['id'];
+    this.retroItemService.getRetroItems(id)
+      .map(items => items.sort((a, b) => {
+        return a.votes > b.votes ? -1 : 1;
+      }))
+      .forEach(items => {
+        this.orderedItems = items;
+        console.log(this.orderedItems);
+      });
   }
 
   private loadMeetingData(id: string) {

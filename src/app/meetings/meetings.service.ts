@@ -8,6 +8,12 @@ export class MeetingsService {
 
   constructor(@Inject('StorageClient') private storage: StorageClient) {}
 
+  startMeeting(): string {
+    const currentDate = new Date();
+    const createdMeetingId = this.storage.meetings().create(currentDate);
+    return createdMeetingId;
+  }
+
   getMeeting(id: string): Observable<Meeting> {
     return this.storage.meetings().find(id);
   }

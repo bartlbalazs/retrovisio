@@ -21,6 +21,15 @@ export class MeetingsComponent implements OnInit {
   }
 
   onLoadMeeting(id : string) {
+    this.navigateToMeeting(id);
+  }
+
+  onStartMeeting() {
+    const newMeetingId = this.meetingsService.startMeeting();
+    this.navigateToMeeting(newMeetingId);
+  }
+
+  private navigateToMeeting(id: string) {
     this.router.navigate(['/meetings', id]);
   }
 }

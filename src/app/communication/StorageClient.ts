@@ -4,6 +4,8 @@ import {RetroItem} from "../shared/RetroItem";
 
 export interface MeetingStorage {
 
+  create(startedAt: Date) : string;
+
   find(id: string): Observable<Meeting>;
 
   findAll(): Observable<Meeting[]>;

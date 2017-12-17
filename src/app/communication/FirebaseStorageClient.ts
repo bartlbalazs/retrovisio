@@ -3,7 +3,6 @@ import {AngularFirestore, AngularFirestoreCollection} from "angularfire2/firesto
 import {Meeting} from "../shared/Meeting";
 import {Injectable} from "@angular/core";
 import {RetroItem} from "../shared/RetroItem";
-import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class FirebaseStorageClient implements StorageClient {
@@ -16,6 +15,14 @@ export class FirebaseStorageClient implements StorageClient {
 
   meetings(): MeetingStorage {
     return {
+
+      create: (startedAt: Date) => {
+        const meeting = new Meeting();
+        const id = this.afs.createId();
+        meeting.startedAt = startedAt;
+        this.afs.doc<Meeting>('meetings/' + id).set(Object.assign({}, meeting));
+        return id;
+      },
 
       find: (id: string) => {
         return this.afs.doc<Meeting>('meetings/' + id).valueChanges()
@@ -51,12 +58,12 @@ export class FirebaseStorageClient implements StorageClient {
 
       updateVote: (meetingId, retroItem) => {
         const itemDoc = this.afs.doc<RetroItem>('meetingminutes/' + meetingId + '/retroitems/' + retroItem.timestamp);
-        itemDoc.update({"votes" : retroItem.votes})
+        itemDoc.update({"votes": retroItem.votes})
       },
 
       updateContent: (meetingId, retroItem) => {
         const itemDoc = this.afs.doc<RetroItem>('meetingminutes/' + meetingId + '/retroitems/' + retroItem.timestamp);
-        itemDoc.update({"content" : retroItem.content})
+        itemDoc.update({"content": retroItem.content})
       }
     }
   }
