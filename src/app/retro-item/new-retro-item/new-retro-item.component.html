@@ -1,5 +1,8 @@
 <mat-card>
   <form (ngSubmit)="onAddItem()" #f="ngForm" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+    <mat-slide-toggle [(ngModel)]="positive" name="positive"></mat-slide-toggle>
+    <mat-icon *ngIf="positive" mat-list-icon>mood</mat-icon>
+    <mat-icon *ngIf="!positive" mat-list-icon>sentiment_dissatisfied</mat-icon>
     <mat-form-field fxFlex>
       <input class="mat-input" matInput name="content" ngModel>
     </mat-form-field>

@@ -13,6 +13,8 @@ export class NewRetroItemComponent implements OnInit {
 
   @ViewChild('f') itemForm: NgForm;
 
+  public positive: boolean = false;
+
   constructor(private retroItemService: RetroItemService, private route: ActivatedRoute) {
   }
 
@@ -22,7 +24,8 @@ export class NewRetroItemComponent implements OnInit {
   onAddItem() {
     let meetingId = this.route.snapshot.params['id'];
     let content = this.itemForm.value.content;
-    this.retroItemService.addItemToMeeting(meetingId, content);
+    let positive = this.itemForm.value.positive;
+    this.retroItemService.addItemToMeeting(meetingId, content, positive);
     this.itemForm.resetForm();
   }
 }

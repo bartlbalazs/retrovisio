@@ -43,6 +43,7 @@ export class RetroItemComponent implements OnInit {
 
   onEditItem() {
     this.retroItem.content = this.editForm.value.content;
+    this.retroItem.positive = this.editForm.value.positive || false;
     this.retroItemService.editContent(this.getMeetingId(), this.retroItem);
     this.isInEditingMode = false;
   }

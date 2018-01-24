@@ -13,6 +13,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import {AppComponent} from './app.component';
 import {MeetingsComponent} from './meetings/meetings.component';
@@ -48,6 +49,7 @@ import {RetroItemService} from "./retro-item/retro-item.service";
     MatCardModule,
     MatInputModule,
     MatButtonModule,
+    MatSlideToggleModule,
     AngularFirestoreModule,
     MatDialogModule,
     FormsModule,
