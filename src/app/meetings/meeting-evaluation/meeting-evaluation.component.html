@@ -2,3 +2,4 @@
   <app-evaluatable-item *ngFor="let item of retroItems| async | negativeItem | topvoted; let i = index " [retroItem]="item">
   </app-evaluatable-item>
 </mat-list>
+<button mat-raised-button color="primary" [routerLink]="['../summarize']">Summarizen meeting</button>
