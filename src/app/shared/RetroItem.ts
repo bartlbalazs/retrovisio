@@ -4,6 +4,7 @@ export class RetroItem {
   timestamp: number = Date.now();
   votes: number = 0;
   positive: boolean = false;
+  actionItem: string = '';
 
   constructor(content: string, positive: boolean) {
     this.content = content;

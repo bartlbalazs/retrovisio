@@ -25,6 +25,10 @@ import {FirebaseStorageClient} from "./communication/FirebaseStorageClient";
 import {RoutingModule} from "./routing/routing.module";
 import {MeetingDetailComponent} from './meetings/meeting-detail/meeting-detail.component';
 import {RetroItemService} from "./retro-item/retro-item.service";
+import { MeetingEvaluationComponent } from './meetings/meeting-evaluation/meeting-evaluation.component';
+import { NegativeItemPipe } from './retro-item/negative-item.pipe';
+import { EvaluatableItemComponent } from './retro-item/evaluatable-item/evaluatable-item.component';
+import { TopvotedPipe } from './retro-item/topvoted.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,11 @@ import {RetroItemService} from "./retro-item/retro-item.service";
     RetroItemComponent,
     MeetingDetailComponent,
     NewRetroItemComponent,
-    DeleteConfirmationDialog
+    DeleteConfirmationDialog,
+    MeetingEvaluationComponent,
+    NegativeItemPipe,
+    EvaluatableItemComponent,
+    TopvotedPipe,
   ],
   entryComponents: [
     DeleteConfirmationDialog

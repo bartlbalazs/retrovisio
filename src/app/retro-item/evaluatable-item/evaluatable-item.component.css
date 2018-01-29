@@ -1,0 +1,11 @@
+.vote {
+  font-size: 24px;
+}
+
+form,mat-form-field {
+  width: 100%;
+}
+
+.mat-card {
+  padding: 8px;
+}

@@ -1,0 +1,22 @@
+<mat-card [ngClass]="{'edited-retro-item': isInEditingMode}">
+  <mat-card-content>
+    <div fxLayout="row" fxLayoutAlign="cenet center" fxLayoutGap="14px">
+      <span class="vote">{{retroItem.votes}}</span>
+      <div fxFlex fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="10px">
+        <span class="mat-body-2" fxFlex>{{retroItem.content}}</span>
+        <form (ngSubmit)="onUpdate()">
+          <div fxFlexFill fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="10px">
+            <mat-form-field>
+              <input matInput placeholder="Action item" [(ngModel)]="retroItem.actionItem"
+                     (ngSubmit)="onUpdate()"
+                     name="actionItem" (ngModelChange)="isEdited=true;">
+            </mat-form-field>
+            <button *ngIf="isEdited" mat-mini-fab>
+              <mat-icon mat-list-icon type="submit">done</mat-icon>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

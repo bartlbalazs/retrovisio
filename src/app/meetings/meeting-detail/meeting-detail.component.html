@@ -1,7 +1,6 @@
-<h2 class="mat-title">Retrospective on {{(meeting |async)?.startedAt |date:'longDate' }}</h2>
 <mat-list>
   <app-retro-item *ngFor="let item of retroItems| async; let i = index " [order]="i + 1" [retroItem]="item">
   </app-retro-item>
 </mat-list>
 <app-new-retro-item></app-new-retro-item>
-<!--<button (click)="onStartEvaluate()">alma</button>-->
+<button mat-raised-button color="primary" [routerLink]="['./evaluate']">Evaluate meeting</button>
