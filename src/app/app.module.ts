@@ -29,7 +29,7 @@ import { MeetingEvaluationComponent } from './meetings/meeting-evaluation/meetin
 import { NegativeItemPipe } from './retro-item/negative-item.pipe';
 import { EvaluatableItemComponent } from './retro-item/evaluatable-item/evaluatable-item.component';
 import { TopvotedPipe } from './retro-item/topvoted.pipe';
-import { SummarizeComponent } from './meetings/summarize/summarize.component';
+import { SummarizeComponent } from './meetings/meeting-summarize/meeting-summarize.component';
 
 @NgModule({
   declarations: [

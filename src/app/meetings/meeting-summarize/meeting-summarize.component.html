@@ -1,0 +1,7 @@
+<mat-card fxFill fxLayout="column">
+  <mat-card-content fxFill fxFlex>
+    <p>Retrospective on {{meetingDate |date:'longDate'}}</p>
+    <p [innerHTML]="summary">
+      </p>
+  </mat-card-content>
+</mat-card>
