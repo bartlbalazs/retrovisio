@@ -25,11 +25,14 @@ import {FirebaseStorageClient} from "./communication/FirebaseStorageClient";
 import {RoutingModule} from "./routing/routing.module";
 import {MeetingDetailComponent} from './meetings/meeting-detail/meeting-detail.component';
 import {RetroItemService} from "./retro-item/retro-item.service";
-import { MeetingEvaluationComponent } from './meetings/meeting-evaluation/meeting-evaluation.component';
-import { NegativeItemPipe } from './retro-item/negative-item.pipe';
-import { EvaluatableItemComponent } from './retro-item/evaluatable-item/evaluatable-item.component';
-import { TopvotedPipe } from './retro-item/topvoted.pipe';
-import { SummarizeComponent } from './meetings/meeting-summarize/meeting-summarize.component';
+import {MeetingEvaluationComponent} from './meetings/meeting-evaluation/meeting-evaluation.component';
+import {NegativeItemPipe} from './retro-item/negative-item.pipe';
+import {EvaluatableItemComponent} from './retro-item/evaluatable-item/evaluatable-item.component';
+import {TopvotedPipe} from './retro-item/topvoted.pipe';
+import {SummarizeComponent} from './meetings/meeting-summarize/meeting-summarize.component';
+import {AuthComponent} from './authentication/auth/auth.component';
+import {FirebaseAuthClient} from "./communication/FirebaseAuthClient";
+import {AngularFireAuth, AngularFireAuthModule} from "angularfire2/auth";
 
 @NgModule({
   declarations: [
@@ -45,6 +48,7 @@ import { SummarizeComponent } from './meetings/meeting-summarize/meeting-summari
     EvaluatableItemComponent,
     TopvotedPipe,
     SummarizeComponent,
+    AuthComponent,
   ],
   entryComponents: [
     DeleteConfirmationDialog
@@ -61,6 +65,7 @@ import { SummarizeComponent } from './meetings/meeting-summarize/meeting-summari
     MatButtonModule,
     MatSlideToggleModule,
     AngularFirestoreModule,
+    AngularFireAuthModule,
     MatDialogModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -68,6 +73,7 @@ import { SummarizeComponent } from './meetings/meeting-summarize/meeting-summari
   ],
   providers: [
     {provide: 'StorageClient', useClass: FirebaseStorageClient},
+    {provide: 'AuthClient', useClass: FirebaseAuthClient},
     FirebaseStorageClient,
     MeetingsService,
     RetroItemService,

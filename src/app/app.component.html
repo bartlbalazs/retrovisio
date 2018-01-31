@@ -1,6 +1,11 @@
-<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
-  <img id="logo" src="../assets/logo.png">
-  <span id="title" class="clickable" routerLink>RetroVisio</span>
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="start center">
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+    <img id="logo" src="../assets/logo.png" class="clickable" routerLink>
+    <span id="title" class="clickable" routerLink>RetroVisio</span>
+  </div>
+  <div fxLayoutAlign="end center" fxFlex="">
+    <app-auth></app-auth>
+  </div>
 </mat-toolbar>
 <div id="main-container">
   <router-outlet></router-outlet>

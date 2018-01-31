@@ -1,0 +1,11 @@
+form {
+  font-size: 10px;
+  color: black;
+  font-weight: bold;
+  background: #F3E5F5;
+  padding: 4px;
+}
+
+form mat-form-field {
+  margin-right: 10px;
+}
