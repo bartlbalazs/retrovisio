@@ -5,13 +5,14 @@ import {Meeting} from "../shared/Meeting";
 import {Router} from "@angular/router";
 import {AuthClient} from "../communication/AuthClient";
 import * as firebase from "firebase";
+import {LoginStateListener} from "../shared/LoginStateListener";
 
 @Component({
   selector: 'app-meetings',
   templateUrl: './meetings.component.html',
   styleUrls: ['./meetings.component.css']
 })
-export class MeetingsComponent implements OnInit {
+export class MeetingsComponent implements OnInit, LoginStateListener {
 
   meetings: Observable<Meeting[]>;
   user: firebase.User;
@@ -20,11 +21,12 @@ export class MeetingsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authClient.addStateListener(this.onLoginStatusChange.bind(this));
-    this.onLoginStatusChange();
+    this.authClient.addStateListener(this);
+    this.user = this.authClient.getCurrentUser();
+    this.meetings = this.meetingsService.getMeetings();
   }
 
-  onLoadMeeting(id : string) {
+  onLoadMeeting(id: string) {
     this.navigateToMeeting(id);
   }
 
@@ -33,12 +35,12 @@ export class MeetingsComponent implements OnInit {
     this.navigateToMeeting(newMeetingId);
   }
 
-  private onLoginStatusChange() : void {
-    this.meetings = this.meetingsService.getMeetings();
-    this.user = this.authClient.getCurrentUser();
-  }
-
   private navigateToMeeting(id: string) {
     this.router.navigate(['/meetings', id]);
+  }
+
+  loginStateChanged(user: firebase.User): void {
+    this.user = user;
+    this.meetings = this.meetingsService.getMeetings();
   }
 }
