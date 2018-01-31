@@ -18,17 +18,18 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authClient.addStateListener(this.updateUser.bind(this));
   }
 
   login(): void {
-    this.authClient.login(this.email, this.password, this.updateUser.bind(this));
+    this.authClient.login(this.email, this.password);
   }
 
   logout(): void {
-    this.authClient.logout(this.updateUser.bind(this));
+    this.authClient.logout();
   }
 
-  updateUser(user: firebase.User): void {
+  private updateUser(user: firebase.User): void {
     this.user = user;
   }
 }

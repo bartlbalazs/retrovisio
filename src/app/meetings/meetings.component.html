@@ -2,4 +2,4 @@
   <h2 class="mat-h2">Past meetings</h2>
   <app-meeting *ngFor="let meeting of meetings | async" [meeting]="meeting" (click)="onLoadMeeting(meeting.id)"></app-meeting>
 </mat-list>
-<button mat-raised-button color="primary" (click)="onStartMeeting()">Start a new meeting</button>
+<button *ngIf="user" mat-raised-button color="primary" (click)="onStartMeeting()">Start a new meeting</button>

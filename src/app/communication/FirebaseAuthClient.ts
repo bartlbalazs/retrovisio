@@ -6,21 +6,26 @@ import {AngularFireAuth} from "angularfire2/auth";
 @Injectable()
 export class FirebaseAuthClient implements AuthClient {
 
+  private stateListeners: Function[] = [];
+
   constructor(private angularFireAuth: AngularFireAuth) {
   }
 
-
-  login(email: string, password: string, callback: Function): void {
+  login(email: string, password: string): void {
     this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
-      .then(userInfo => callback(userInfo));
+      .then(userInfo => this.stateListeners.forEach(listener => listener(userInfo)));
   }
 
-  logout(callback: Function): void {
+  logout(): void {
     this.angularFireAuth.auth.signOut()
-      .then(userInfo => callback(userInfo));
+      .then(userInfo => this.stateListeners.forEach(listener => listener(userInfo)));
   }
 
   getCurrentUser(): firebase.User {
     return this.angularFireAuth.auth.currentUser;
+  }
+
+  addStateListener(listener: Function): void {
+    this.stateListeners.push(listener);
   }
 }
