@@ -8,5 +8,5 @@
   </div>
 </mat-toolbar>
 <div id="main-container">
-  <router-outlet></router-outlet>
+  <router-outlet *ngIf="isLoggedIn"></router-outlet>
 </div>
